@@ -1,21 +1,14 @@
 DOCKER_IMAGE=dockette/ffmegapeg
-DOCKER_PLATFORM=linux/amd64
+DOCKER_TAG?=latest
+DOCKER_PLATFORMS?=linux/amd64,linux/arm64
 
-.PHONY: build test run docker-build
-build: docker-build
+.PHONY: build test run
+build:
+	docker buildx build --platform ${DOCKER_PLATFORMS} -t ${DOCKER_IMAGE}:${DOCKER_TAG} .
 
 test:
-	docker run --rm ${DOCKER_IMAGE} ffmpeg -version
-	docker run --rm ${DOCKER_IMAGE} ffprobe -version
+	docker run --rm ${DOCKER_IMAGE}:${DOCKER_TAG} ffmpeg -version
+	docker run --rm ${DOCKER_IMAGE}:${DOCKER_TAG} ffprobe -version
 
 run:
-	docker run --rm -it ${DOCKER_IMAGE}
-
-docker-build:
-	docker buildx \
-		build \
-		--platform ${DOCKER_PLATFORM} \
-		--pull \
-		--load \
-		-t ${DOCKER_IMAGE} \
-		.
+	docker run --rm -it ${DOCKER_IMAGE}:${DOCKER_TAG}
