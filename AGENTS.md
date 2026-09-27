@@ -2,14 +2,14 @@
 
 ## Project
 
-Dockette FFMEGAPEG demonstrates and packages ffmpeg tooling copied from `jrottenberg/ffmpeg:7.1-scratch` into a Debian runtime image.
+Dockette FFMEGAPEG demonstrates and packages ffmpeg tooling copied from `jrottenberg/ffmpeg:9.0-scratch` into a Debian runtime image.
 
 ## Image
 
 - Image name is `dockette/ffmegapeg`.
 - Default tag is `latest`, controlled by `DOCKER_TAG`.
 - Build context is the repository root.
-- `Dockerfile` copies `ffmpeg`, `ffprobe`, `/lib`, and `/share` from the ffmpeg stage into `debian:bookworm-slim`.
+- `Dockerfile` copies `ffmpeg`, `ffprobe`, `/lib`, and `/share` from the ffmpeg stage into `debian:trixie-slim`.
 - `LD_LIBRARY_PATH` is set to `/usr/local/lib:/usr/local/lib64` for the copied ffmpeg libraries.
 - The runtime image installs `git` and defaults to `/bin/bash`.
 
