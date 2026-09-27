@@ -20,9 +20,9 @@
 ## Usage
 
 ```Dockerfile
-FROM jrottenberg/ffmpeg:7.1-scratch AS ffmpeg
+FROM jrottenberg/ffmpeg:9.0-scratch AS ffmpeg
 
-FROM debian:bookworm-slim
+FROM debian:trixie-slim
 
 ENV LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib64
 
