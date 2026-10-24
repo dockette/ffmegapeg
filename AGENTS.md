@@ -18,6 +18,7 @@ Dockette FFMEGAPEG demonstrates and packages ffmpeg tooling copied from `jrotten
 - `make build` uses Docker Buildx for `${DOCKER_PLATFORMS}` and tags `${DOCKER_IMAGE}:${DOCKER_TAG}`.
 - `make test` runs `ffmpeg -version` and `ffprobe -version` inside the image.
 - `make run` opens an interactive container shell.
+- `make version` prints `VERSION`; `make release` sets it to today's date. CI pushes `latest` also as `<VERSION>` and creates the GitHub release.
 
 ## Runtime Notes
 
