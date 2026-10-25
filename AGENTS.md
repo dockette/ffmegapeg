@@ -18,13 +18,13 @@ Dockette FFMEGAPEG demonstrates and packages ffmpeg tooling copied from `jrotten
 - `make build` uses Docker Buildx for `${DOCKER_PLATFORMS}` and tags `${DOCKER_IMAGE}:${DOCKER_TAG}`.
 - `make test` runs `ffmpeg -version` and `ffprobe -version` inside the image.
 - `make run` opens an interactive container shell.
-- `make version` prints `VERSION`; `make release` sets it to today's date. CI pushes `latest` also as `<VERSION>` and creates the GitHub release.
+- `make version` prints `VERSION`; `make release` sets today's date in the key=value `VERSION` file. On `master`, CI builds once, pushes `latest` and `<VERSION>` and creates the GitHub release.
 
 ## Runtime Notes
 
 - No Compose file is present; local runtime is direct `docker run`.
 - Default Makefile platforms are `linux/amd64,linux/arm64`; add `--load` or narrow platforms manually if you need a locally runnable image from `make build`.
-- GitHub Actions builds context `.` and publishes `dockette/ffmegapeg:latest` after the smoke test.
+- GitHub Actions builds context `.` and publishes `dockette/ffmegapeg:latest` and `<VERSION>` from `master` after the smoke test.
 - README shows the intended pattern for copying ffmpeg into other images; keep it aligned with the Dockerfile stage source.
 
 ## Guidelines
