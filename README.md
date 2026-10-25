@@ -17,7 +17,22 @@
 
 -----
 
+Examples of [ffmpeg](https://ffmpeg.org) in Docker. The image copies the `ffmpeg` and `ffprobe` from
+`jrottenberg/ffmpeg:9.0-scratch` into `debian:trixie-slim`. Use the same pattern in your own image.
+
+## Features
+
+- `ffmpeg` and `ffprobe` from `jrottenberg/ffmpeg:9.0-scratch`, in `/usr/local/bin`
+- Base `debian:trixie-slim` with `git`; `LD_LIBRARY_PATH` is set for the copied libraries
+- Default command is `/bin/bash`
+
 ## Usage
+
+```sh
+docker run --rm -it dockette/ffmegapeg:latest ffmpeg -version
+```
+
+Copy ffmpeg into your own image:
 
 ```Dockerfile
 FROM jrottenberg/ffmpeg:9.0-scratch AS ffmpeg
@@ -42,8 +57,26 @@ COPY ./app /app
 ENTRYPOINT ["/app"]
 ```
 
------
+## Versions
+
+| Version | Release |
+|---------|---------|
+| `dockette/ffmegapeg:YYYY.MM.DD` | release `YYYY.MM.DD` |
+| `dockette/ffmegapeg:latest` | latest build of `master` |
+
+Releases are listed on [GitHub](https://github.com/dockette/ffmegapeg/releases).
+
+## Development
+
+```sh
+make build          # build the image for linux/amd64 and linux/arm64
+make test           # check ffmpeg and ffprobe
+make run            # open a shell in the image
+make version        # print VERSION
+make release        # set today's date in VERSION
+```
 
 ## Maintenance
 
-See [how to contribute](https://github.com/dockette/.github/blob/master/CONTRIBUTING.md) to this package. Consider to [support](https://github.com/sponsors/f3l1x) **f3l1x**. Thank you for using this package.
+See [how to contribute](https://github.com/dockette/.github/blob/master/CONTRIBUTING.md) to this package. Consider to
+[support](https://github.com/sponsors/f3l1x) **f3l1x**. Thank you for using this package.
