@@ -1,4 +1,6 @@
-FROM jrottenberg/ffmpeg:9.0-scratch AS ffmpeg
+ARG FFMPEG_VERSION=9.0
+
+FROM jrottenberg/ffmpeg:${FFMPEG_VERSION}-scratch AS ffmpeg
 
 FROM debian:trixie-slim
 
